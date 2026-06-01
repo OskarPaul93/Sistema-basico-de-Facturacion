@@ -1,0 +1,178 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #16a085;
+    --bg: #f5f6fa;
+    --text: #2f3640;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+nav {
+    background-color: #34495e;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 1rem 1.2rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+nav button:hover {
+    background-color: var(--accent);
+}
+
+nav button.active {
+    background-color: var(--accent);
+}
+
+main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+h3 {
+    color: #34495e;
+    margin-top: 1.5rem;
+}
+
+.formula {
+    background-color: #f8f9fa;
+    border-left: 5px solid var(--accent);
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}
+
+.alert {
+    background-color: #ffeaa7;
+    border-left: 5px solid #e1b12c;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #3922a9;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+/* Estilo interactivo para las opciones de la trivia */
+.btn-opcion {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-opcion:hover {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+    padding-left: 1.5rem; /* Efecto sutil de desplazamiento al pasar el mouse */
+}
+
+.pregunta{
+    margin-bottom: 25px;
+}
+
+.pregunta label{
+    display:block;
+    padding:10px;
+    margin:5px 0;
+    border:1px solid #ddd;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.correcta{
+    background-color:#d4edda;
+    border:2px solid #28a745;
+    color:#155724;
+}
+
+.incorrecta{
+    background-color:#f8d7da;
+    border:2px solid #dc3545;
+    color:#721c24;
+}

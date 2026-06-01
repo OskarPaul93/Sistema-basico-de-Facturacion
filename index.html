@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad 3: Facturación e Impuestos</title>
+    <link rel="stylesheet" href="sistemaFacturacion.css"/>
+    <link rel="stylesheet" href="facturador.css"/>
+</head>
+<body>
+
+    <header>
+        <h1>Facturación e Impuestos</h1>
+        <p></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><button id="btn-conceptos" class="active" onclick="mostrarSeccion('conceptos')">Módulo 1: Conceptos</button></li>
+            <li><button id="btn-calculos" onclick="mostrarSeccion('calculos')">Módulo 2: Facturación</button></li>
+            <li><button id="btn-sri" onclick="mostrarSeccion('sri')">Módulo 3: Impuestos</button></li>
+
+        </ul>
+    </nav>
+
+    <main>
+        <!--modulo 1-->
+        <section id="conceptos" class="card">
+            <h2> Productos Gravados con IVA</h2>
+            <p>Son todos los bienes y servicios que por ley generan una tasa impositiva al venderse. El Estado recauda estos ingresos a través de los comercios, quienes actúan como agentes de retención obligados a cobrar el impuesto al consumidor final.</p>
+
+            <h2> Productos Tarifa 0% e IVA Exento</h2>
+            <p><strong>Tarifa 0%:</strong> Aplica a bienes de primera necesidad (alimentos básicos, medicamentos, educación, vivienda). Tienen una tarifa del 0% para no encarecer el costo de vida. <em>Dato clave: Sí se registran en las facturas y se declaran obligatoriamente.</em></p>
+            <p><strong>IVA Exento:</strong> Son actividades o servicios especiales que están fuera del objeto del impuesto, lo que significa que no generan ningún tipo de trámite o registro de IVA.</p>
+
+            <h2> Estructura de la Factura</h2>
+            <p>Un comprobante de venta legal debe organizarse de forma descendente y obligatoria con los siguientes elementos de control:</p>
+            <ul>
+                <li><strong>Encabezado:</strong> Datos de identificación del emisor (RUC, Razón Social, dirección) y número secuencial de la factura.</li>
+                <li><strong>Cuerpo:</strong> Detalle de los artículos (cantidad, descripción y precio unitario).</li>
+                <li><strong>Pie de Factura:</strong> Bloque de cálculos matemáticos donde se desglosa el Subtotal, Descuentos, IVA cobrado y el Valor Total Neto.</li>
+            </ul>
+
+            <h2> El Impuesto al Valor Agregado (IVA)</h2>
+            <p>Es un impuesto indirecto que grava la transferencia de bienes y la prestación de servicios en todas sus etapas de comercialización. Financieramente se maneja en dos flujos independientes:</p>
+            <ul>
+                <li><strong>IVA Cobrado (Ventas):</strong> Dinero que entra al negocio pero pertenece al Estado.</li>
+                <li><strong>IVA Pagado (Compras):</strong> Dinero que el negocio gasta al adquirir sus insumos comerciales.</li>
+            </ul>
+        </section>
+
+        <!--modulo2-->
+        <section id="calculos" class="card" style="display: none;">
+            <h2> Fórmulas Matemáticas de Facturación</h2>
+            <p>Para liquidar una factura sin errores institucionales, se aplican las ecuaciones en el siguiente orden estricto:</p>
+            <div class="formula">
+                1. Subtotal con Descuento = Subtotal Bruto − Descuento Comercial
+            </div>
+            <div class="formula">
+                2. IVA (15%) = Subtotal con Descuento × 0.15
+            </div>
+            <div class="formula">
+                3. Total General = Subtotal con Descuento + IVA
+            </div>
+            <div class="alert">
+                <strong>⚠️ Alerta Contable:</strong> Nunca calcules el IVA antes de restar los descuentos comerciales. Si lo haces, estarás cobrando impuestos sobre un dinero que el cliente jamás pagó.
+            </div>
+
+            <h2> Facturación Electrónica</h2>
+            <p>Sistema digital moderno y obligatorio que reemplaza a los antiguos talonarios físicos de papel. Su proceso automático funciona mediante el siguiente flujo informático:</p>
+            <div class="formula">
+                Estructuración del archivo XML ➔ Firma Electrónica ➔ Validación y Autorización del SRI ➔ Emisión y entrega al Cliente (Formatos PDF y XML)
+            </div>
+            <p><em>Plazo legal:</em> Toda empresa o profesional tiene un tiempo límite de hasta 24 horas después de la venta para transmitir el documento digital al SRI.</p>
+        </section>
+
+        <!--modulo3-->
+        <section id="sri" class="card" style="display: none;">
+            <h2> Declaraciones Mensuales</h2>
+            <p>Es el informe periódico que los contribuyentes presentan de forma obligatoria al Servicio de Rentas Internas (SRI). Sirve para declarar la totalidad de las transacciones comerciales ejecutadas durante el mes calendario anterior.</p>
+
+            <h2> Formulario 104 y Crédito Tributario</h2>
+            <p>El <strong>Formulario 104</strong> es la herramienta virtual del SRI para liquidar el IVA. En este formulario se ejerce el derecho al **Crédito Tributario**, el cual permite restar el IVA pagado en las compras del negocio al IVA cobrado en las ventas.</p>
+            <div class="formula">
+                Impuesto Final = IVA de Ventas − Crédito Tributario (IVA de Compras)
+            </div>
+
+            <h2> Caso Práctico - Liquidación Mensual de Impuesto</h2>
+            <p>A continuación se presenta un ejercicio real de cruce de cuentas utilizando la tasa vigente del 15% de IVA:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Registro Comercial</th>
+                        <th>Base Imponible</th>
+                        <th>Cálculo Contable (15%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ventas totales facturadas (IVA Cobrado)</td>
+                        <td>$8,000.00</td>
+                        <td>$8,000 × 0.15 = <strong>$1,200.00</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Compras operativas del negocio (IVA Pagado)</td>
+                        <td>$5,000.00</td>
+                        <td>$5,000 × 0.15 = <strong>$750.00</strong></td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa; font-weight: bold;">
+                        <td>Impuesto Neto a pagar al SRI</td>
+                        <td>-</td>
+                        <td>$1,200 − $750 = <strong>$450.00</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert">
+                <strong>💡 Tip para Evaluaciones:</strong> Si el IVA de tus compras supera al de tus ventas, no debes pagar nada al SRI. Esa diferencia se guarda como un saldo a favor que podrás utilizar en el Formulario 104 del mes siguiente.
+            </div>
+        </section>
+            <!--Factura-->
+    
+
+    </main>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script src="sistemaFacturacion.js"></script>
+
+</body>
+</html>
