@@ -19,7 +19,8 @@
             <li><button id="btn-conceptos" class="active" onclick="mostrarSeccion('conceptos')">Módulo 1: Conceptos</button></li>
             <li><button id="btn-calculos" onclick="mostrarSeccion('calculos')">Módulo 2: Facturación</button></li>
             <li><button id="btn-sri" onclick="mostrarSeccion('sri')">Módulo 3: Impuestos</button></li>
-
+            <li><button id="btn-evaluacion" onclick="mostrarSeccion('evaluacion')">Evaluacion</button></li>
+            <li><button id="btn-factura" onclick="mostrarSeccion('factura')">Factura</button></li>
         </ul>
     </nav>
 
@@ -120,7 +121,187 @@
             </div>
         </section>
             <!--Factura-->
-    
+        <section id="factura" style="display: none;">
+        <div class="contenedor">       
+<section class="panel-izquierdo">
+<h2>Datos del Cliente</h2>
+ 
+            <label>Cédula / RUC</label>
+<input type="text" id="cedula" placeholder="Ingrese identificación">
+ 
+            <label>Nombre</label>
+<input type="text" id="nombre" placeholder="Ingrese nombre">
+ 
+            <label>Dirección</label>
+<input type="text" id="direccion" placeholder="Ingrese dirección">
+ 
+            <label>Teléfono</label>
+<input type="tel" id="telefono" placeholder="Ingrese teléfono">
+ 
+            <label>Correo</label>
+<input type="email" id="correo" placeholder="Ingrese correo">
+ 
+            <button onclick="buscarCliente()">Buscar Cliente</button>
+</section>
+ 
+        <section class="panel-derecho">
+<div class="productos">
+<h2>Agregar Productos</h2>
+<div class="fila-producto">
+<input type="text" id="producto" placeholder="Producto">
+<input type="number" id="cantidad" placeholder="Cant.">
+<input type="number" id="precio" placeholder="Precio">
+<button onclick="agregarProducto()">Agregar</button>
+</div>
+</div>
+ 
+            <table>
+<thead>
+<tr>
+<th>Producto</th>
+<th>Cantidad</th>
+<th>Precio</th>
+<th>Subtotal</th>
+</tr>
+</thead>
+ 
+                <tbody id="tablaProductos">
+ 
+                </tbody>
+</table>
+ 
+                <div class="totales">
+<p>Subtotal: $<span id="subtotal">0.00</span></p>
+<p>IVA 15%: $<span id="iva">0.00</span></p>
+<h3>Total: $<span id="total">0.00</span></h3>
+</div>
+ 
+                <div class="acciones">
+<button class="btn-guardar" onclick="guardarFactura()">Guardar Factura</button>
+<button class="btn-limpiar" onclick="limpiarFactura()">Nueva Factura</button>
+</div>
+</div>
+ 
+        </section>
+</section>
+<!--Evaluacion--> 
+</section>
+<!--Evaluacion--> 
+<section id="evaluacion" class="card" style="display: none;">
+<h2>🎯 Trivia Interactiva: ¡Pon a prueba a tus compañeros!</h2>
+<p>Selecciona una pregunta para discutirla en clase con el grupo:</p>
+<hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;"/>
+ 
+            <!-- Pregunta 1 -->
+<div class="pregunta">
+<h3>1. Si compras tus libros escolares y cuadernos en Ecuador, ¿qué tarifa de IVA se aplica?</h3>
+ 
+                <label>
+<input type="radio" name="p1" value="a">
+                    a) Tarifa 15%
+</label>
+ 
+                <label>
+<input type="radio" name="p1" value="b">
+                    b) Tarifa 0%
+</label>
+ 
+                <label>
+<input type="radio" name="p1" value="c">
+                    c) Están exentos de registro
+</label>
+</div>
+ 
+            <!-- Pregunta 2 -->
+<div class="pregunta">
+<h3>2. Al calcular una factura comercial, ¿en qué momento se debe restar un descuento?</h3>
+ 
+                <label>
+<input type="radio" name="p2" value="a">
+                    a) Después de calcular el IVA.
+</label>
+ 
+                <label>
+<input type="radio" name="p2" value="b">
+                    b) Al valor total final de la factura.
+</label>
+ 
+                <label>
+<input type="radio" name="p2" value="c">
+                    c) Directamente al Subtotal, antes del IVA.
+</label>
+</div>
+
+ 
+            <!-- Pregunta 3 -->
+<div class="pregunta">
+<h3>3. ¿Cuál es el plazo máximo legal para transmitir una factura electrónica al SRI?</h3>
+ 
+                <label>
+<input type="radio" name="p3" value="a">
+                    a) Hasta 24 horas.
+</label>
+ 
+                <label>
+<input type="radio" name="p3" value="b">
+                    b) 5 días laborables.
+</label>
+ 
+                <label>
+<input type="radio" name="p3" value="c">
+                    c) Al final de cada mes.
+</label>
+</div>
+
+ 
+            <!-- Pregunta 4 -->
+<div class="pregunta">
+<h3>4. ¿Qué beneficio real le otorga el "Crédito Tributario" a un negocio?</h3>
+ 
+                <label>
+<input type="radio" name="p4" value="a">
+                    a) El SRI le presta dinero en efectivo.
+</label>
+ 
+                <label>
+<input type="radio" name="p4" value="b">
+                    b) Permite restar el IVA pagado en compras del IVA cobrado en ventas.
+</label>
+ 
+                <label>
+<input type="radio" name="p4" value="c">
+                    c) Evita entregar facturas por un mes.
+</label>
+</div>
+
+ 
+            <!-- Pregunta 5 -->
+<div class="pregunta">
+<h3>5. Si tu negocio cobró $1,000 de IVA en ventas y pagó $400 de IVA en compras, ¿cuánto le debes dar al SRI?</h3>
+ 
+                <label>
+<input type="radio" name="p5" value="a">
+                    a) $1,400
+</label>
+ 
+                <label>
+<input type="radio" name="p5" value="b">
+                    b)  $1,000
+</label>
+ 
+                <label>
+<input type="radio" name="p5" value="c">
+                    c) $600
+</label>
+</div>
+ 
+            <div style="text-align:center; margin-top:20px;">
+<button onclick="calificarEvaluacion()">
+                    Calificar Evaluación
+</button>
+</div>
+ 
+        </section>
 
     </main>
 

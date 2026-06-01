@@ -12,12 +12,20 @@ function ocultarSecciones(){
     let listaClass3 = componente3.classList;
     listaClass3.remove("active");
 
+    let componente4 = document.getElementById("btn-evaluacion");
+    let listaClass4 = componente4.classList;
+    listaClass4.remove("active");
+ 
+    let componente5 = document.getElementById("btn-factura");
+    let listaClass5 = componente5.classList;
+    listaClass5.remove("active");
 
     // --- NUEVO: Ocultamos también los bloques de texto para que cambie la pantalla ---
     document.getElementById('conceptos').style.display = 'none';
     document.getElementById('calculos').style.display = 'none';
     document.getElementById('sri').style.display = 'none';
-
+    document.getElementById('evaluacion').style.display = 'none';
+    document.getElementById('factura').style.display ='none';
 }
 
 
