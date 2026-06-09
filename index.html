@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unidad 3: Facturación e Impuestos</title>
-    <link rel="stylesheet" href="sistemaFacturacion.css"/>
-    <link rel="stylesheet" href="facturador.css"/>
+    <link rel="stylesheet" href="sistemaFacturacion.css" />
+    <link rel="stylesheet" href="facturador.css" />
 </head>
+
 <body>
 
     <header>
@@ -16,7 +18,7 @@
 
     <nav>
         <ul>
-            <li><button id="btn-conceptos" class="active" onclick="mostrarSeccion('conceptos')">Módulo 1: Conceptos</button></li>
+            <li><button id="btn-conceptos" class="active" onclick="mostrarSeccion('conceptos')">Módulo 1:Conceptos</button></li>
             <li><button id="btn-calculos" onclick="mostrarSeccion('calculos')">Módulo 2: Facturación</button></li>
             <li><button id="btn-sri" onclick="mostrarSeccion('sri')">Módulo 3: Impuestos</button></li>
             <li><button id="btn-evaluacion" onclick="mostrarSeccion('evaluacion')">Evaluacion</button></li>
@@ -28,32 +30,43 @@
         <!--modulo 1-->
         <section id="conceptos" class="card">
             <h2> Productos Gravados con IVA</h2>
-            <p>Son todos los bienes y servicios que por ley generan una tasa impositiva al venderse. El Estado recauda estos ingresos a través de los comercios, quienes actúan como agentes de retención obligados a cobrar el impuesto al consumidor final.</p>
+            <p>Son todos los bienes y servicios que por ley generan una tasa impositiva al venderse. El Estado recauda
+                estos ingresos a través de los comercios, quienes actúan como agentes de retención obligados a cobrar el
+                impuesto al consumidor final.</p>
 
             <h2> Productos Tarifa 0% e IVA Exento</h2>
-            <p><strong>Tarifa 0%:</strong> Aplica a bienes de primera necesidad (alimentos básicos, medicamentos, educación, vivienda). Tienen una tarifa del 0% para no encarecer el costo de vida. <em>Dato clave: Sí se registran en las facturas y se declaran obligatoriamente.</em></p>
-            <p><strong>IVA Exento:</strong> Son actividades o servicios especiales que están fuera del objeto del impuesto, lo que significa que no generan ningún tipo de trámite o registro de IVA.</p>
+            <p><strong>Tarifa 0%:</strong> Aplica a bienes de primera necesidad (alimentos básicos, medicamentos,
+                educación, vivienda). Tienen una tarifa del 0% para no encarecer el costo de vida. <em>Dato clave: Sí se
+                    registran en las facturas y se declaran obligatoriamente.</em></p>
+            <p><strong>IVA Exento:</strong> Son actividades o servicios especiales que están fuera del objeto del
+                impuesto, lo que significa que no generan ningún tipo de trámite o registro de IVA.</p>
 
             <h2> Estructura de la Factura</h2>
-            <p>Un comprobante de venta legal debe organizarse de forma descendente y obligatoria con los siguientes elementos de control:</p>
+            <p>Un comprobante de venta legal debe organizarse de forma descendente y obligatoria con los siguientes
+                elementos de control:</p>
             <ul>
-                <li><strong>Encabezado:</strong> Datos de identificación del emisor (RUC, Razón Social, dirección) y número secuencial de la factura.</li>
+                <li><strong>Encabezado:</strong> Datos de identificación del emisor (RUC, Razón Social, dirección) y
+                    número secuencial de la factura.</li>
                 <li><strong>Cuerpo:</strong> Detalle de los artículos (cantidad, descripción y precio unitario).</li>
-                <li><strong>Pie de Factura:</strong> Bloque de cálculos matemáticos donde se desglosa el Subtotal, Descuentos, IVA cobrado y el Valor Total Neto.</li>
+                <li><strong>Pie de Factura:</strong> Bloque de cálculos matemáticos donde se desglosa el Subtotal,
+                    Descuentos, IVA cobrado y el Valor Total Neto.</li>
             </ul>
 
             <h2> El Impuesto al Valor Agregado (IVA)</h2>
-            <p>Es un impuesto indirecto que grava la transferencia de bienes y la prestación de servicios en todas sus etapas de comercialización. Financieramente se maneja en dos flujos independientes:</p>
+            <p>Es un impuesto indirecto que grava la transferencia de bienes y la prestación de servicios en todas sus
+                etapas de comercialización. Financieramente se maneja en dos flujos independientes:</p>
             <ul>
                 <li><strong>IVA Cobrado (Ventas):</strong> Dinero que entra al negocio pero pertenece al Estado.</li>
-                <li><strong>IVA Pagado (Compras):</strong> Dinero que el negocio gasta al adquirir sus insumos comerciales.</li>
+                <li><strong>IVA Pagado (Compras):</strong> Dinero que el negocio gasta al adquirir sus insumos
+                    comerciales.</li>
             </ul>
         </section>
 
         <!--modulo2-->
         <section id="calculos" class="card" style="display: none;">
             <h2> Fórmulas Matemáticas de Facturación</h2>
-            <p>Para liquidar una factura sin errores institucionales, se aplican las ecuaciones en el siguiente orden estricto:</p>
+            <p>Para liquidar una factura sin errores institucionales, se aplican las ecuaciones en el siguiente orden
+                estricto:</p>
             <div class="formula">
                 1. Subtotal con Descuento = Subtotal Bruto − Descuento Comercial
             </div>
@@ -64,31 +77,40 @@
                 3. Total General = Subtotal con Descuento + IVA
             </div>
             <div class="alert">
-                <strong>⚠️ Alerta Contable:</strong> Nunca calcules el IVA antes de restar los descuentos comerciales. Si lo haces, estarás cobrando impuestos sobre un dinero que el cliente jamás pagó.
+                <strong>⚠️ Alerta Contable:</strong> Nunca calcules el IVA antes de restar los descuentos comerciales.
+                Si lo haces, estarás cobrando impuestos sobre un dinero que el cliente jamás pagó.
             </div>
 
             <h2> Facturación Electrónica</h2>
-            <p>Sistema digital moderno y obligatorio que reemplaza a los antiguos talonarios físicos de papel. Su proceso automático funciona mediante el siguiente flujo informático:</p>
+            <p>Sistema digital moderno y obligatorio que reemplaza a los antiguos talonarios físicos de papel. Su
+                proceso automático funciona mediante el siguiente flujo informático:</p>
             <div class="formula">
-                Estructuración del archivo XML ➔ Firma Electrónica ➔ Validación y Autorización del SRI ➔ Emisión y entrega al Cliente (Formatos PDF y XML)
+                Estructuración del archivo XML ➔ Firma Electrónica ➔ Validación y Autorización del SRI ➔ Emisión y
+                entrega al Cliente (Formatos PDF y XML)
             </div>
-            <p><em>Plazo legal:</em> Toda empresa o profesional tiene un tiempo límite de hasta 24 horas después de la venta para transmitir el documento digital al SRI.</p>
+            <p><em>Plazo legal:</em> Toda empresa o profesional tiene un tiempo límite de hasta 24 horas después de la
+                venta para transmitir el documento digital al SRI.</p>
         </section>
 
         <!--modulo3-->
         <section id="sri" class="card" style="display: none;">
             <h2> Declaraciones Mensuales</h2>
-            <p>Es el informe periódico que los contribuyentes presentan de forma obligatoria al Servicio de Rentas Internas (SRI). Sirve para declarar la totalidad de las transacciones comerciales ejecutadas durante el mes calendario anterior.</p>
+            <p>Es el informe periódico que los contribuyentes presentan de forma obligatoria al Servicio de Rentas
+                Internas (SRI). Sirve para declarar la totalidad de las transacciones comerciales ejecutadas durante el
+                mes calendario anterior.</p>
 
             <h2> Formulario 104 y Crédito Tributario</h2>
-            <p>El <strong>Formulario 104</strong> es la herramienta virtual del SRI para liquidar el IVA. En este formulario se ejerce el derecho al **Crédito Tributario**, el cual permite restar el IVA pagado en las compras del negocio al IVA cobrado en las ventas.</p>
+            <p>El <strong>Formulario 104</strong> es la herramienta virtual del SRI para liquidar el IVA. En este
+                formulario se ejerce el derecho al **Crédito Tributario**, el cual permite restar el IVA pagado en las
+                compras del negocio al IVA cobrado en las ventas.</p>
             <div class="formula">
                 Impuesto Final = IVA de Ventas − Crédito Tributario (IVA de Compras)
             </div>
 
             <h2> Caso Práctico - Liquidación Mensual de Impuesto</h2>
-            <p>A continuación se presenta un ejercicio real de cruce de cuentas utilizando la tasa vigente del 15% de IVA:</p>
-            
+            <p>A continuación se presenta un ejercicio real de cruce de cuentas utilizando la tasa vigente del 15% de
+                IVA:</p>
+
             <table>
                 <thead>
                     <tr>
@@ -117,190 +139,191 @@
             </table>
 
             <div class="alert">
-                <strong>💡 Tip para Evaluaciones:</strong> Si el IVA de tus compras supera al de tus ventas, no debes pagar nada al SRI. Esa diferencia se guarda como un saldo a favor que podrás utilizar en el Formulario 104 del mes siguiente.
+                <strong>💡 Tip para Evaluaciones:</strong> Si el IVA de tus compras supera al de tus ventas, no debes
+                pagar nada al SRI. Esa diferencia se guarda como un saldo a favor que podrás utilizar en el Formulario
+                104 del mes siguiente.
             </div>
         </section>
-            <!--Factura-->
+        <!--Factura-->
         <section id="factura" style="display: none;">
-        <div class="contenedor">       
-<section class="panel-izquierdo">
-<h2>Datos del Cliente</h2>
- 
-            <label>Cédula / RUC</label>
-<input type="text" id="cedula" placeholder="Ingrese identificación">
- 
-            <label>Nombre</label>
-<input type="text" id="nombre" placeholder="Ingrese nombre">
- 
-            <label>Dirección</label>
-<input type="text" id="direccion" placeholder="Ingrese dirección">
- 
-            <label>Teléfono</label>
-<input type="tel" id="telefono" placeholder="Ingrese teléfono">
- 
-            <label>Correo</label>
-<input type="email" id="correo" placeholder="Ingrese correo">
- 
-            <button onclick="buscarCliente()">Buscar Cliente</button>
-</section>
- 
-        <section class="panel-derecho">
-<div class="productos">
-<h2>Agregar Productos</h2>
-<div class="fila-producto">
-<input type="text" id="producto" placeholder="Producto">
-<input type="number" id="cantidad" placeholder="Cant.">
-<input type="number" id="precio" placeholder="Precio">
-<button onclick="agregarProducto()">Agregar</button>
-</div>
-</div>
- 
-            <table>
-<thead>
-<tr>
-<th>Producto</th>
-<th>Cantidad</th>
-<th>Precio</th>
-<th>Subtotal</th>
-</tr>
-</thead>
- 
-                <tbody id="tablaProductos">
- 
-                </tbody>
-</table>
- 
-                <div class="totales">
-<p>Subtotal: $<span id="subtotal">0.00</span></p>
-<p>IVA 15%: $<span id="iva">0.00</span></p>
-<h3>Total: $<span id="total">0.00</span></h3>
-</div>
- 
-                <div class="acciones">
-<button class="btn-guardar" onclick="guardarFactura()">Guardar Factura</button>
-<button class="btn-limpiar" onclick="limpiarFactura()">Nueva Factura</button>
-</div>
-</div>
- 
+            <div class="contenedor">
+                <section class="panel-izquierdo">
+                    <h2>Datos del Cliente</h2>
+
+                    <label>Cédula / RUC</label>
+                    <input type="text" id="cedula" placeholder="Ingrese identificación">
+
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" placeholder="Ingrese nombre">
+
+                    <label>Dirección</label>
+                    <input type="text" id="direccion" placeholder="Ingrese dirección">
+
+                    <label>Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Ingrese teléfono">
+
+                    <label>Correo</label>
+                    <input type="email" id="correo" placeholder="Ingrese correo">
+
+                    <button onclick="buscarCliente()">Buscar Cliente</button>
+                </section>
+
+                <section class="panel-derecho">
+                    <div class="productos">
+                        <h2>Agregar Productos</h2>
+                        <div class="fila-producto">
+                            <input type="text" id="producto" placeholder="Producto">
+                            <input type="number" id="cantidad" placeholder="Cant.">
+                            <input type="number" id="precio" placeholder="Precio">
+                            <button onclick="agregarProducto()">Agregar</button>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaProductos">
+
+                        </tbody>
+                    </table>
+
+                    <div class="totales">
+                        <p>Subtotal: $<span id="subtotal">0.00</span></p>
+                        <p>IVA 15%: $<span id="iva">0.00</span></p>
+                        <h3>Total: $<span id="total">0.00</span></h3>
+                    </div>
+
+                    <div class="acciones">
+                        <button class="btn-guardar" onclick="guardarFactura()">Guardar Factura</button>
+                        <button class="btn-limpiar" onclick="limpiarFactura()">Nueva Factura</button>
+                    </div>
+            </div>
+
         </section>
-</section>
-<!--Evaluacion--> 
-</section>
-<!--Evaluacion--> 
-<section id="evaluacion" class="card" style="display: none;">
-<h2>🎯 Trivia Interactiva: ¡Pon a prueba a tus compañeros!</h2>
-<p>Selecciona una pregunta para discutirla en clase con el grupo:</p>
-<hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;"/>
- 
+        <!--Evaluacion-->
+        <section id="evaluacion" class="card" style="display: none;">
+            <h2>🎯 Trivia Interactiva: ¡Pon a prueba a tus compañeros!</h2>
+            <p>Selecciona una pregunta para discutirla en clase con el grupo:</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;" />
+
             <!-- Pregunta 1 -->
-<div class="pregunta">
-<h3>1. Si compras tus libros escolares y cuadernos en Ecuador, ¿qué tarifa de IVA se aplica?</h3>
- 
+            <div class="pregunta">
+                <h3>1. Si compras tus libros escolares y cuadernos en Ecuador, ¿qué tarifa de IVA se aplica?</h3>
+
                 <label>
-<input type="radio" name="p1" value="a">
+                    <input type="radio" name="p1" value="a">
                     a) Tarifa 15%
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p1" value="b">
+                    <input type="radio" name="p1" value="b">
                     b) Tarifa 0%
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p1" value="c">
+                    <input type="radio" name="p1" value="c">
                     c) Están exentos de registro
-</label>
-</div>
- 
+                </label>
+            </div>
+
             <!-- Pregunta 2 -->
-<div class="pregunta">
-<h3>2. Al calcular una factura comercial, ¿en qué momento se debe restar un descuento?</h3>
- 
+            <div class="pregunta">
+                <h3>2. Al calcular una factura comercial, ¿en qué momento se debe restar un descuento?</h3>
+
                 <label>
-<input type="radio" name="p2" value="a">
+                    <input type="radio" name="p2" value="a">
                     a) Después de calcular el IVA.
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p2" value="b">
+                    <input type="radio" name="p2" value="b">
                     b) Al valor total final de la factura.
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p2" value="c">
+                    <input type="radio" name="p2" value="c">
                     c) Directamente al Subtotal, antes del IVA.
-</label>
-</div>
+                </label>
+            </div>
 
- 
+
             <!-- Pregunta 3 -->
-<div class="pregunta">
-<h3>3. ¿Cuál es el plazo máximo legal para transmitir una factura electrónica al SRI?</h3>
- 
+            <div class="pregunta">
+                <h3>3. ¿Cuál es el plazo máximo legal para transmitir una factura electrónica al SRI?</h3>
+
                 <label>
-<input type="radio" name="p3" value="a">
+                    <input type="radio" name="p3" value="a">
                     a) Hasta 24 horas.
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p3" value="b">
+                    <input type="radio" name="p3" value="b">
                     b) 5 días laborables.
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p3" value="c">
+                    <input type="radio" name="p3" value="c">
                     c) Al final de cada mes.
-</label>
-</div>
+                </label>
+            </div>
 
- 
+
             <!-- Pregunta 4 -->
-<div class="pregunta">
-<h3>4. ¿Qué beneficio real le otorga el "Crédito Tributario" a un negocio?</h3>
- 
-                <label>
-<input type="radio" name="p4" value="a">
-                    a) El SRI le presta dinero en efectivo.
-</label>
- 
-                <label>
-<input type="radio" name="p4" value="b">
-                    b) Permite restar el IVA pagado en compras del IVA cobrado en ventas.
-</label>
- 
-                <label>
-<input type="radio" name="p4" value="c">
-                    c) Evita entregar facturas por un mes.
-</label>
-</div>
+            <div class="pregunta">
+                <h3>4. ¿Qué beneficio real le otorga el "Crédito Tributario" a un negocio?</h3>
 
- 
+                <label>
+                    <input type="radio" name="p4" value="a">
+                    a) El SRI le presta dinero en efectivo.
+                </label>
+
+                <label>
+                    <input type="radio" name="p4" value="b">
+                    b) Permite restar el IVA pagado en compras del IVA cobrado en ventas.
+                </label>
+
+                <label>
+                    <input type="radio" name="p4" value="c">
+                    c) Evita entregar facturas por un mes.
+                </label>
+            </div>
+
+
             <!-- Pregunta 5 -->
-<div class="pregunta">
-<h3>5. Si tu negocio cobró $1,000 de IVA en ventas y pagó $400 de IVA en compras, ¿cuánto le debes dar al SRI?</h3>
- 
+            <div class="pregunta">
+                <h3>5. Si tu negocio cobró $1,000 de IVA en ventas y pagó $400 de IVA en compras, ¿cuánto le debes dar
+                    al SRI?</h3>
+
                 <label>
-<input type="radio" name="p5" value="a">
+                    <input type="radio" name="p5" value="a">
                     a) $1,400
-</label>
- 
+                </label>
+
                 <label>
-<input type="radio" name="p5" value="b">
-                    b)  $1,000
-</label>
- 
+                    <input type="radio" name="p5" value="b">
+                    b) $1,000
+                </label>
+
                 <label>
-<input type="radio" name="p5" value="c">
+                    <input type="radio" name="p5" value="c">
                     c) $600
-</label>
-</div>
- 
+                </label>
+            </div>
+
             <div style="text-align:center; margin-top:20px;">
-<button onclick="calificarEvaluacion()">
+                <button onclick="calificarEvaluacion()">
                     Calificar Evaluación
-</button>
-</div>
- 
+                </button>
+            </div>
+            <div id="calificacion"></div>
+
         </section>
 
     </main>
@@ -312,4 +335,5 @@
     <script src="sistemaFacturacion.js"></script>
 
 </body>
+
 </html>
