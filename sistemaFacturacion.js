@@ -43,77 +43,248 @@ function mostrarSeccion(id){
     let seccion = document.getElementById(id);
     seccion.style.display = "block";
     
-
+    // Scroll suave hacia arriba
     
 }
 
 
 function calificarEvaluacion(){
-
-    // 1. EL ACORDEÓN: Guardamos las respuestas correctas de las 5 preguntas en un objeto
+    //Guardamos las respuestas correctas de las 5 preguntas en un objeto
     let respuestasCorrectas = {
-        p1: "b", // Pregunta 1: la respuesta correcta es la 'b'
-        p2: "c", // Pregunta 2: la respuesta correcta es la 'c'
-        p3: "a", // Pregunta 3: la respuesta correcta es la 'a'
-        p4: "b", // Pregunta 4: la respuesta correcta es la 'b'
-        p5: "c"  // Pregunta 5: la respuesta correcta es la 'c'
+        p1: "b",
+        p2: "c",
+        p3: "a",
+        p4: "b",
+        p5: "c"
     };
-
-    // 2. EL CONTADOR: Empezamos una cajita en 0 para ir sumando los puntos del alumno
+    //Empezamos una cajita en 0 para ir sumando los puntos del alumno
     let aciertos = 0;
-
-    // 3. EL BUCLE: Recorremos el "acordeón". En cada vuelta, la variable 'pregunta' valdrá "p1", luego "p2", etc.
+    //En cada vuelta, la variable 'pregunta' valdrá "p1", luego "p2", etc.
     for(let pregunta in respuestasCorrectas){
-
-        // 4. DETECTAR SELECCIÓN: Buscamos el input (circulito radio) de la pregunta actual que esté marcado (:checked)
+        //Buscamos el input (circulito radio) de la pregunta actual que esté marcado (:checked)
         let seleccion = document.querySelector(
             `input[name="${pregunta}"]:checked`
         );
-
-        // 5. VALIDACIÓN DE VACÍOS: Si el alumno NO marcó ninguna opción, detenemos todo y pedimos que complete el examen
+        //Si el alumno NO marcó ninguna opción, detenemos todo y pedimos que complete el examen
         if(!seleccion){
             alert("Debe responder todas las preguntas.");
-            return; // El 'return' frena la función por completo aquí
+            return;
         }
-
-        // 6. ATRAPAR TODAS LAS OPCIONES: Capturamos los 3 circulitos (A, B y C) de esta pregunta para trabajar con ellos
+        //Capturamos los 3 circulitos (A, B y C) de esta pregunta para trabajar con ellos
         let opciones = document.querySelectorAll(
             `input[name="${pregunta}"]`
         );
-
-        // 7. LIMPIAR Y PINTAR LA CORRECTA: Revisamos las 3 opciones una por una
+        //Revisamos las 3 opciones una por una
         opciones.forEach(opcion => {
-
             // Borramos los colores verde/rojo que hayan quedado de un intento anterior
             opcion.parentElement.classList.remove(
                 "correcta",
                 "incorrecta"
             );
-
-            // Si la opción que estamos revisando coincide con la respuesta correcta del acordeón...
+             // Si la opción que estamos revisando coincide con la respuesta correcta de las variables respuestas correctas
             if(opcion.value === respuestasCorrectas[pregunta]){
-                // ...le añadimos la clase "correcta" para que SIEMPRE se pinte de VERDE en la pantalla
+                //le añadimos la clase "correcta" para que SIEMPRE se pinte de VERDE en la pantalla
                 opcion.parentElement.classList.add("correcta");
             }
         });
-
-        // 8. EVALUAR AL ESTUDIANTE: Comparamos lo que el alumno marcó contra el acordeón secreto
+        //Comparamos lo que el alumno marcó contra la variable respuestasCorrectas
+        // Si la respuesta del alumno coincide con la correcta, le sumamos 1 punto
         if(seleccion.value === respuestasCorrectas[pregunta]){
-            // Si la respuesta del alumno coincide con la correcta, le sumamos 1 punto
             aciertos++;
+        // Si el alumno se equivocó, buscamos lo que él marcó y lo pintamos de ROJO (incorrecta)
         }else{
-            // Si el alumno se equivocó, buscamos lo que él marcó y lo pintamos de ROJO (incorrecta)
             seleccion.parentElement.classList.add("incorrecta");
         }
     }
+    //Una vez que el bucle revisó las 5 preguntas, lanzamos la alerta con el puntaje final
+  
 
-    // 9. NOTA FINAL: Una vez que el bucle revisó las 5 preguntas, lanzamos la alerta con el puntaje final
-    //
-    let calificacion = document.getElementById("calificacion");
-    calificacion.innerHTML =`
-    <h3>Evaluacion finalizada</h3>
-    <p>obutviste ${aciertos} de 5 puntos</p>
-    `;
-    calificacion.style.display = "block";
-    
+let resultado = document.getElementById("resultado");
+resultado.innerHTML = "Obtuviste " + aciertos + " de 5 puntos.";
+}
+
+
+let clientes = JSON.parse(localStorage.getItem("clientes"));
+
+if(!clientes){
+
+    clientes = [
+        {
+            cedula: "99999",
+            nombre: "CONSUMIDOR FINAL",
+            direccion: "-",
+            telefono: "-",
+            correo: "-"
+        }
+    ];
+
+    localStorage.setItem(
+        "clientes",
+        JSON.stringify(clientes)
+    );
+}
+
+function mostrarClientes(){
+
+    let seccion =
+        document.getElementById("seccion-clientes");
+
+    if(seccion.style.display === "none"){
+        seccion.style.display = "block";
+    }else{
+        seccion.style.display = "none";
+    }
+
+    actualizarTablaClientes();
+}
+
+function guardarCliente(){
+
+    let cedula =
+        document.getElementById("clienteCedula").value;
+
+    let nombre =
+        document.getElementById("clienteNombre").value;
+
+    let direccion =
+        document.getElementById("clienteDireccion").value;
+
+    let telefono =
+        document.getElementById("clienteTelefono").value;
+
+    let correo =
+        document.getElementById("clienteCorreo").value;
+
+    if(
+        cedula === "" ||
+        nombre === ""
+    ){
+        alert("Complete los datos obligatorios");
+        return;
+    }
+
+    clientes.push({
+        cedula,
+        nombre,
+        direccion,
+        telefono,
+        correo
+    });
+
+    localStorage.setItem(
+    "clientes",
+    JSON.stringify(clientes)
+    );
+
+    actualizarTablaClientes();
+
+
+    document.getElementById("clienteCedula").value = "";
+    document.getElementById("clienteNombre").value = "";
+    document.getElementById("clienteDireccion").value = "";
+    document.getElementById("clienteTelefono").value = "";
+    document.getElementById("clienteCorreo").value = "";
+
+    alert("Cliente guardado correctamente");
+}
+
+function actualizarTablaClientes(){
+
+    let tabla =
+        document.getElementById("tablaClientes");
+
+    tabla.innerHTML = "";
+
+    clientes.forEach((cliente, indice) => {
+
+        tabla.innerHTML += `
+            <tr>
+                <td>${cliente.cedula}</td>
+                <td>${cliente.nombre}</td>
+                <td>${cliente.correo}</td>
+
+                <td>
+                    <button
+                    onclick="eliminarCliente(${indice})">
+                    Eliminar
+                    </button>
+                </td>
+
+            </tr>
+        `;
+    });
+
+}
+
+
+
+function eliminarCliente(indice){
+
+    if(clientes[indice].cedula === "99999"){
+
+        alert(
+            "Consumidor Final no puede eliminarse"
+        );
+
+        return;
+    }
+
+    clientes.splice(indice, 1);
+
+    localStorage.setItem(
+        "clientes",
+        JSON.stringify(clientes)
+    );
+
+    actualizarTablaClientes();
+
+}
+
+function buscarCliente(){
+
+    let cedulaBuscada =
+        document.getElementById("cedula").value;
+
+    let clienteEncontrado = null;
+
+    for(let i = 0; i < clientes.length; i++){
+
+        if(clientes[i].cedula === cedulaBuscada){
+
+            clienteEncontrado = clientes[i];
+            break;
+        }
+    }
+
+    if(clienteEncontrado){
+
+        document.getElementById("nombre").value =
+            clienteEncontrado.nombre;
+
+        document.getElementById("direccion").value =
+            clienteEncontrado.direccion;
+
+        document.getElementById("telefono").value =
+            clienteEncontrado.telefono;
+
+        document.getElementById("correo").value =
+            clienteEncontrado.correo;
+
+    }else{
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("direccion").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("correo").value = "";
+
+}
+
+}
+
+
+
+window.onload = function(){
+
+    actualizarTablaClientes();
+
 }

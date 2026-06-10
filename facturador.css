@@ -1,4 +1,3 @@
- 
 * {
   margin: 0;
   padding: 0;
@@ -173,4 +172,21 @@ td {
     flex-direction: column;
   }
 }
- 
+
+.menu-factura{
+    margin-bottom:20px;
+}
+
+.menu-factura button{
+    background:#2563eb;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.menu-factura button:hover{
+    background:#1d4ed8;
+}
+
