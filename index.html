@@ -271,9 +271,22 @@
                         <p>---------------------------------</p>
                         <p><strong>Cliente:</strong> <span id="rep-nombre"></span></p>
                         <p><strong>Cédula:</strong> <span id="rep-cedula"></span></p>
+                        <h3>Detalle de productos</h3>
+                        <table width="100%" style="text-align: left; border-bottom: 1px dashed #000;">
+                            <thead>
+                                <tr style="background-color: #0056b3; color: white; text-align: center;">
+                                    <th style="padding: 8px;">Producto</th>
+                                    <th style="padding: 8px;">Cant.</th>
+                                    <th style="padding: 8px;">Precio Unit.</th>
+                                    <th style="padding: 8px;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rep-lista-productos">
+                            </tbody>
+                        </table>
                         <p>---------------------------------</p>
-
-                        <p><strong>Total Pagado:</strong> $<span id="rep-total"></span></p>
+                        <p><strong>Total iva:</strong> $<span id="rep-iva"></span></p>
+                        <p><strong>Total A Pagar:</strong> $<span id="rep-total"></span></p>
                         <p>---------------------------------</p>
                         <h3>¡Gracias por su compra!</h3>
                     </div>
@@ -410,7 +423,7 @@
     </footer>
 
     <script src="sistemaFacturacion.js"></script>
-
+    <script src="productos.js"></script>
 </body>
 
 </html>
