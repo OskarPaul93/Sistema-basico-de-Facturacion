@@ -107,8 +107,7 @@ let totalTodo =
     document.getElementById("subtotal").textContent = subtotalGeneral.toFixed(2);
     document.getElementById("iva").textContent = impuestoIva.toFixed(2);
     document.getElementById("total").textContent = totalTodo.toFixed(2);
-    document.getElementById("total").textContent =
-    totalTodo.toFixed(2);
+    document.getElementById("total").textContent =totalTodo.toFixed(2);
     
     // 7. LIMPIEZA DE INTERFAZ: Reseteamos los campos de entrada para permitir una nueva inserción
     document.getElementById("producto").value = "";
@@ -147,6 +146,7 @@ function guardarFactura() {
     // 1. CAPTURA PREVIA: Almacenamos los datos calculados e ingresados en variables locales
     let nombreCliente = document.getElementById("nombre").value;
     let cedulaCliente = document.getElementById("cedula").value;
+
     
     // Capturamos todos los valores calculados de la pantalla ANTES de limpiar la interfaz
     let subtotalPantalla = document.getElementById("subtotal").textContent; // 👈 CORREGIDO: El ID real es "subtotal"
@@ -164,6 +164,7 @@ function guardarFactura() {
     // hacia las etiquetas de visualización estática de la Nota de Venta usando .textContent
     document.getElementById("rep-nombre").textContent = nombreCliente;
     document.getElementById("rep-cedula").textContent = cedulaCliente;
+
     
     // Inyectamos los datos respaldados de forma exacta en el reporte de abajo
     document.getElementById("rep-subtotal").textContent = subtotalPantalla;
@@ -195,5 +196,5 @@ function guardarFactura() {
     document.getElementById("direccion").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("correo").value = "";
-    document.getElementById("afiliado").value = "No"; // O el valor por defecto que uses
+    document.getElementById("afiliado").value = ""; 
 }
