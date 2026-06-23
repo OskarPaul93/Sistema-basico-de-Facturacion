@@ -41,6 +41,7 @@ function cargarPrecioProducto() {
 // ESTADO GLOBAL: Acumulador (alcancía) numérico para el subtotal de la venta
 // =========================================================================
 let subtotalGeneral = 0;
+let descuentoGeneral = 0;
 
 /**
  * LÓGICA DE TRANSACCIÓN: Calcula los subtotales, impuestos y renderiza la fila en la tabla.
@@ -64,9 +65,32 @@ function agregarProducto() {
     
     // 4. ACUMULACIÓN: Sumamos el costo de esta línea al estado global de la factura
     subtotalGeneral = subtotalGeneral + subtotalDelProducto;
-    let impuestoIva = subtotalGeneral * 0.15; // Cálculo del 15% del IVA en Ecuador
-    let totalTodo = subtotalGeneral + impuestoIva; // Monto neto final
-    
+    let afiliado =
+document.getElementById("afiliado").value;
+
+if(afiliado === "Si"){
+
+    descuentoGeneral =
+        subtotalGeneral * 0.03;
+
+}else{
+
+    descuentoGeneral = 0;
+}
+
+document.getElementById("descuento").textContent =
+    descuentoGeneral.toFixed(2);
+
+let subtotalConDescuento =
+    subtotalGeneral - descuentoGeneral;
+
+let impuestoIva =
+    subtotalConDescuento * 0.15;
+
+let totalTodo =
+    subtotalConDescuento + impuestoIva;
+
+
     // 5. RENDERIZADO DINÁMICO: Obtenemos el cuerpo de la tabla y concatenamos (+=) una nueva fila HTML
     let tabla = document.getElementById("tablaProductos");
     tabla.innerHTML += `
@@ -83,6 +107,8 @@ function agregarProducto() {
     document.getElementById("subtotal").textContent = subtotalGeneral.toFixed(2);
     document.getElementById("iva").textContent = impuestoIva.toFixed(2);
     document.getElementById("total").textContent = totalTodo.toFixed(2);
+    document.getElementById("total").textContent =
+    totalTodo.toFixed(2);
     
     // 7. LIMPIEZA DE INTERFAZ: Reseteamos los campos de entrada para permitir una nueva inserción
     document.getElementById("producto").value = "";
@@ -94,31 +120,13 @@ function agregarProducto() {
  * RESET DE SISTEMA: Restablece la memoria interna y limpia todos los componentes visuales del DOM.
  */
 function limpiarFactura() {
-    // 1. REINICIO DE ESTADO: Devolvemos el acumulador global a su valor inicial de cero
-    subtotalGeneral = 0; 
-    
-    // 2. VACIADO DE CONTENEDOR: Eliminamos todas las filas renderizadas dentro del <tbody>
-    document.getElementById("tablaProductos").innerHTML = "";
-    
-    // 3. RESET DE MARCADORES DE SOLO LECTURA: Seteamos los spans de texto de los totales a "0.00"
-    document.getElementById("subtotal").textContent = "0.00";
-    document.getElementById("iva").textContent = "0.00";
-    document.getElementById("total").textContent = "0.00";
-    
-    // 4. RESET DE INPUTS DE CLIENTE: Vaciamos las propiedades .value de las cajas de texto del usuario
-    document.getElementById("cedula").value = "";
-    document.getElementById("nombre").value = "";
-    document.getElementById("direccion").value = "";
-    document.getElementById("telefono").value = "";
-    document.getElementById("correo").value = "";
-    
-    // 5. RESET DE INPUTS DE PRODUCTOS: Limpiamos los elementos de control del formulario de compras
-    document.getElementById("producto").value = "";
-    document.getElementById("cantidad").value = "";
-    document.getElementById("precio").value = "";
-    
-    // 6. MANIPULACIÓN DE ESTILOS CSS: Ocultamos el contenedor de la nota de venta final (reporte)
-    document.getElementById("reporte-factura").style.display = "none";
+ subtotalGeneral = 0;
+descuentoGeneral = 0;
+
+document.getElementById("subtotal").textContent = "0.00";
+document.getElementById("descuento").textContent = "0.00";
+document.getElementById("iva").textContent = "0.00";
+document.getElementById("total").textContent = "0.00";
 }
 
 /**
@@ -170,3 +178,4 @@ function guardarFactura() {
     document.getElementById("telefono").value = "";
     document.getElementById("correo").value = "";
 }
+

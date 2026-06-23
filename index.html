@@ -185,6 +185,7 @@
                         <th>Cédula/RUC</th>
                         <th>Nombre</th>
                         <th>Correo</th>
+                        <th>Afiliado</th>
                         <th>Acción</th>
                     </tr>
 
@@ -212,6 +213,15 @@
 
                     <label>Correo</label>
                     <input type="email" id="correo" placeholder="Ingrese correo">
+
+                    <label>Afiliado</label>
+                    <input type="text" id="afiliado" readonly>
+                    <select id="clienteAfiliado">
+                     <option value="Si">Si</option>
+                     <option value="No">No</option>
+                    </select>
+                
+                    
 
                     <button onclick="buscarCliente()">Buscar Cliente</button>
                 </section>
@@ -254,10 +264,28 @@
                     </table>
 
                     <div class="totales">
-                        <p>Subtotal: $<span id="subtotal">0.00</span></p>
-                        <p>IVA 15%: $<span id="iva">0.00</span></p>
-                        <h3>Total: $<span id="total">0.00</span></h3>
-                    </div>
+
+    <p>
+        Subtotal:
+        $<span id="subtotal">0.00</span>
+    </p>
+
+    <p>
+        Descuento 3%:
+        $<span id="descuento">0.00</span>
+    </p>
+
+    <p>
+        IVA 15%:
+        $<span id="iva">0.00</span>
+    </p>
+
+    <h3>
+        Total:
+        $<span id="total">0.00</span>
+    </h3>
+
+</div>
 
                     <div class="acciones">
                         <button class="btn-guardar" onclick="guardarFactura()">Guardar Factura</button>

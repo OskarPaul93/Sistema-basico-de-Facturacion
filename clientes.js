@@ -103,7 +103,6 @@ function calificarEvaluacion(){
     resultado.innerHTML = "Obtuviste " + aciertos + " de 5 puntos.";
 }
 
-
 let clientes = JSON.parse(localStorage.getItem("clientes"));
 
 if(!clientes){
@@ -121,28 +120,32 @@ if(!clientes){
             nombre: "Anthony",
             direccion: "Av. Amazonas y Patria, Quito",
             telefono: "0998765432",
-            correo: "anthony.herrera@mail.com"
+            correo: "anthony.herrera@mail.com",
+            afiliado:"Si"
         },
         {
             cedula: "1711112223",
             nombre: "María Elena López",
             direccion: "C.C. El Recreo, Quito Sur",
             telefono: "0984321098",
-            correo: "maria.lopez@outlook.com"
+            correo: "maria.lopez@outlook.com",
+            afiliado:"Si"
         },
         {
             cedula: "0923456781",
             nombre: "Juan Carlos Pérez",
             direccion: "Urdesa Central, Guayaquil",
             telefono: "0959876541",
-            correo: "juan.perez@gmail.com"
+            correo: "juan.perez@gmail.com",
+            afiliado:"No"
         },
         {
             cedula: "0104567892",
             nombre: "Ana Lucía Torres",
             direccion: "Calle Larga y Benigno Malo, Cuenca",
             telefono: "0976543210",
-            correo: "ana.torres@yahoo.com"
+            correo: "ana.torres@yahoo.com",
+            afiliado:"No"
         }
     ];
 
@@ -182,6 +185,9 @@ function guardarCliente(){
 
     let correo =
         document.getElementById("clienteCorreo").value;
+    
+    let afiliado =
+    document.getElementById("clienteAfiliado").value;
 
     if(
         cedula === "" || cedula.length != 10 ||
@@ -196,7 +202,8 @@ function guardarCliente(){
         nombre,
         direccion,
         telefono,
-        correo
+        correo,
+        afiliado
     });
 
     localStorage.setItem(
@@ -212,6 +219,7 @@ function guardarCliente(){
     document.getElementById("clienteDireccion").value = "";
     document.getElementById("clienteTelefono").value = "";
     document.getElementById("clienteCorreo").value = "";
+    document.getElementById("clienteAfiliado").value = "";
 
     alert("Cliente guardado correctamente");
 }
@@ -230,6 +238,7 @@ function actualizarTablaClientes(){
                 <td>${cliente.cedula}</td>
                 <td>${cliente.nombre}</td>
                 <td>${cliente.correo}</td>
+                <td>${cliente.afiliado || "-"}</td>
 
                 <td>
                     <button
@@ -297,6 +306,8 @@ function buscarCliente(){
 
         document.getElementById("correo").value =
             clienteEncontrado.correo;
+        document.getElementById("afiliado").value =
+        clienteEncontrado.afiliado || "No";
 
     }else{
 
@@ -304,7 +315,8 @@ function buscarCliente(){
     document.getElementById("direccion").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("correo").value = "";
-
+    document.getElementById("afiliado").value =
+    clienteEncontrado.afiliado;
 }
 
 }
