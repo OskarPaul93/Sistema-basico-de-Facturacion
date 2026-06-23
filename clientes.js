@@ -103,6 +103,12 @@ function calificarEvaluacion(){
     resultado.innerHTML = "Obtuviste " + aciertos + " de 5 puntos.";
 }
 
+
+let clientes = JSON.parse(localStorage.getItem("clientes"));
+
+if(!clientes){
+
+    // Arreglo de clientes actualizado con el atributo booleano 'afiliado'
 let clientes = JSON.parse(localStorage.getItem("clientes"));
 
 if(!clientes){
@@ -113,7 +119,8 @@ if(!clientes){
             nombre: "CONSUMIDOR FINAL",
             direccion: "-",
             telefono: "-",
-            correo: "-"
+            correo: "-",
+            afiliado: "No" // No aplica para descuento
         },
         {
             cedula: "1725556662",
@@ -121,7 +128,7 @@ if(!clientes){
             direccion: "Av. Amazonas y Patria, Quito",
             telefono: "0998765432",
             correo: "anthony.herrera@mail.com",
-            afiliado:"Si"
+            afiliado: "Si"  // ¡Afiliado! Goza del 3% de descuento
         },
         {
             cedula: "1711112223",
@@ -129,7 +136,7 @@ if(!clientes){
             direccion: "C.C. El Recreo, Quito Sur",
             telefono: "0984321098",
             correo: "maria.lopez@outlook.com",
-            afiliado:"Si"
+            afiliado: "Si"
         },
         {
             cedula: "0923456781",
@@ -137,7 +144,7 @@ if(!clientes){
             direccion: "Urdesa Central, Guayaquil",
             telefono: "0959876541",
             correo: "juan.perez@gmail.com",
-            afiliado:"No"
+            afiliado: "No"
         },
         {
             cedula: "0104567892",
@@ -145,9 +152,15 @@ if(!clientes){
             direccion: "Calle Larga y Benigno Malo, Cuenca",
             telefono: "0976543210",
             correo: "ana.torres@yahoo.com",
-            afiliado:"No"
+            afiliado: "No"
         }
     ];
+
+    localStorage.setItem(
+        "clientes",
+        JSON.stringify(clientes)
+    );
+}
 
     localStorage.setItem(
         "clientes",
@@ -185,12 +198,13 @@ function guardarCliente(){
 
     let correo =
         document.getElementById("clienteCorreo").value;
-    
-    let afiliado =
-    document.getElementById("clienteAfiliado").value;
+
+        let afiliado =
+        document.getElementById("clienteAfiliado").value;
+
 
     if(
-        cedula === "" || cedula.length != 10 ||
+        cedula === ""  ||
         nombre === ""
     ){
         alert("Complete los datos obligatorios");
@@ -219,39 +233,37 @@ function guardarCliente(){
     document.getElementById("clienteDireccion").value = "";
     document.getElementById("clienteTelefono").value = "";
     document.getElementById("clienteCorreo").value = "";
-    document.getElementById("clienteAfiliado").value = "";
 
     alert("Cliente guardado correctamente");
 }
 
 function actualizarTablaClientes(){
-
-    let tabla =
-        document.getElementById("tablaClientes");
-
+    let tabla = document.getElementById("tablaClientes");
     tabla.innerHTML = "";
 
     clientes.forEach((cliente, indice) => {
+        // CORRECCIÓN: Comparamos textualmente si es "Si" o el booleano true
+        let textoAfiliado = "No";
+        if (cliente.afiliado === "Si" || cliente.afiliado === true || cliente.afiliado === "true") { 
+            textoAfiliado = "Si";
+        }
 
         tabla.innerHTML += `
             <tr>
                 <td>${cliente.cedula}</td>
                 <td>${cliente.nombre}</td>
                 <td>${cliente.correo}</td>
-                <td>${cliente.afiliado || "-"}</td>
-
+                <td>${textoAfiliado}</td>
                 <td>
-                    <button
-                    onclick="eliminarCliente(${indice})">
+                    <button onclick="eliminarCliente(${indice})">
                     Eliminar
                     </button>
                 </td>
-
             </tr>
         `;
     });
-
 }
+
 
 
 
@@ -306,17 +318,16 @@ function buscarCliente(){
 
         document.getElementById("correo").value =
             clienteEncontrado.correo;
-        document.getElementById("afiliado").value =
-        clienteEncontrado.afiliado || "No";
 
+        document.getElementById("afiliado").value = 
+            clienteEncontrado.afiliado;
     }else{
-
+        
     document.getElementById("nombre").value = "";
     document.getElementById("direccion").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("correo").value = "";
-    document.getElementById("afiliado").value =
-    clienteEncontrado.afiliado;
+
 }
 
 }
@@ -328,4 +339,3 @@ window.onload = function(){
     actualizarTablaClientes();
 
 }
-

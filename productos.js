@@ -120,23 +120,39 @@ let totalTodo =
  * RESET DE SISTEMA: Restablece la memoria interna y limpia todos los componentes visuales del DOM.
  */
 function limpiarFactura() {
- subtotalGeneral = 0;
-descuentoGeneral = 0;
 
-document.getElementById("subtotal").textContent = "0.00";
-document.getElementById("descuento").textContent = "0.00";
-document.getElementById("iva").textContent = "0.00";
-document.getElementById("total").textContent = "0.00";
+    
+    subtotalGeneral = 0;
+    descuentoGeneral = 0;
+
+    document.getElementById("subtotal").textContent = "0.00";
+    document.getElementById("descuento").textContent = "0.00";
+    document.getElementById("iva").textContent = "0.00";
+    document.getElementById("total").textContent = "0.00";
+
+    
+
+    //Al presionar el boton nueva factura se me borra la factura actual
+    document.getElementById("tablaProductos").innerHTML = "";
+    document.getElementById("reporte-factura").style.display = "none";
 }
 
 /**
  * CIERRE DE VENTA: Genera un reporte final espejo y limpia los formularios interactivos de arriba.
  */
+/**
+ 
+ */
 function guardarFactura() {
     // 1. CAPTURA PREVIA: Almacenamos los datos calculados e ingresados en variables locales
     let nombreCliente = document.getElementById("nombre").value;
     let cedulaCliente = document.getElementById("cedula").value;
-    let totalDinero = document.getElementById("total").textContent;
+    
+    // Capturamos todos los valores calculados de la pantalla ANTES de limpiar la interfaz
+    let subtotalPantalla = document.getElementById("subtotal").textContent; // 👈 CORREGIDO: El ID real es "subtotal"
+    let descuentoPantalla = document.getElementById("descuento").textContent;
+    let ivaPantalla = document.getElementById("iva").textContent;
+    let totalPantalla = document.getElementById("total").textContent;
     
     // 2. VALIDACIÓN DE IDENTIDAD: Si el campo del nombre está vacío, interrumpe el proceso de guardado
     if (nombreCliente === "") {
@@ -148,34 +164,36 @@ function guardarFactura() {
     // hacia las etiquetas de visualización estática de la Nota de Venta usando .textContent
     document.getElementById("rep-nombre").textContent = nombreCliente;
     document.getElementById("rep-cedula").textContent = cedulaCliente;
-    document.getElementById("rep-total").textContent = totalDinero;
     
-    // SOLUCIÓN DE ÁMBITO (SCOPE): Extraemos el IVA directamente de lo que ya está pintado en pantalla
-    // solucionando el problema de que la variable interna de la otra función no es accesible aquí.
-    document.getElementById("rep-iva").textContent = document.getElementById("iva").textContent;
+    // Inyectamos los datos respaldados de forma exacta en el reporte de abajo
+    document.getElementById("rep-subtotal").textContent = subtotalPantalla;
+    document.getElementById("rep-descuento").textContent = descuentoPantalla;
+    document.getElementById("rep-iva").textContent = ivaPantalla;
+    document.getElementById("rep-total").textContent = totalPantalla;
     
-    // 4. CLONACIÓN ESTRUCTURAL DEL DOM (.innerHTML): Capturamos toda la cadena de marcado (filas y celdas) 
-    // que se acumuló en la tabla de transacciones de arriba...
+    // 4. CLONACIÓN ESTRUCTURAL DEL DOM (.innerHTML): Capturamos toda la cadena de marcado
     let productosDeArriba = document.getElementById("tablaProductos").innerHTML;
     
     // ...y la incrustamos de forma idéntica dentro del contenedor de la tabla del reporte de abajo.
     document.getElementById("rep-lista-productos").innerHTML = productosDeArriba;
     
     // 5. CAMBIO DE VISIBILIDAD: Alteramos la propiedad display de CSS de "none" a "block" 
-    // para renderizar visualmente el bloque de la Nota de Venta.
     document.getElementById("reporte-factura").style.display = "block";
     
-    // 6. LIMPIEZA DE ESPACIO DE TRABAJO: Dejamos la plataforma superior lista para la siguiente transacción,
-    // garantizando que los datos clonados abajo permanezcan intactos y legibles para el usuario.
+    // 6. LIMPIEZA DE ESPACIO DE TRABAJO: Dejamos la plataforma superior lista para la siguiente transacción
     subtotalGeneral = 0;
+    descuentoGeneral = 0;
     document.getElementById("tablaProductos").innerHTML = "";
     document.getElementById("subtotal").textContent = "0.00";
+    document.getElementById("descuento").textContent = "0.00";
     document.getElementById("iva").textContent = "0.00";
     document.getElementById("total").textContent = "0.00";
+    
+    // Limpieza de inputs del cliente
     document.getElementById("cedula").value = "";
     document.getElementById("nombre").value = "";
     document.getElementById("direccion").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("correo").value = "";
+    document.getElementById("afiliado").value = "No"; // O el valor por defecto que uses
 }
-
