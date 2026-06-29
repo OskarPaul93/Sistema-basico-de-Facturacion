@@ -54,9 +54,9 @@ let clientes = JSON.parse(localStorage.getItem("clientes"));
 if(!clientes){
 
     // Arreglo de clientes actualizado con el atributo booleano 'afiliado'
-    let clientes = JSON.parse(localStorage.getItem("clientes"));
+    
 
-    if(!clientes){
+   
 
     clientes = [
         {
@@ -101,11 +101,6 @@ if(!clientes){
         }
     ];
 
-    localStorage.setItem(
-        "clientes",
-        JSON.stringify(clientes)
-    );
-}
 
     localStorage.setItem(
         "clientes",
@@ -279,8 +274,77 @@ function buscarCliente(){
 
 
 
-window.onload = function(){
+window.onload = function() {
+    actualizarTablaClientes();
+    actualizarTablaProductosConfig(); // <--- NUEVO
+};
+
+// =========================================================================
+// ARREGLO DE PRODUCTOS EN LOCALSTORAGE (Para controlar si es deducible)
+// =========================================================================
+let productosDB = JSON.parse(localStorage.getItem("productos_db"));
+
+if (!productosDB) {
+    // Inicializamos con tu catálogo actual sumándole el atributo deducible
+    productosDB = [
+        { nombre: "Cola Coca-Cola 350ml", precio: 0.85, deducible: "No" },
+        { nombre: "Agua Mineral Güitig", precio: 0.60, deducible: "Si" },
+        { nombre: "Agua Con Gas Dasani", precio: 0.50, deducible: "Si" },
+        { nombre: "Snack Papas Doritos", precio: 0.75, deducible: "No" },
+        { nombre: "Snack Platanitos Chifles", precio: 0.40, deducible: "No" }
+    ];
+
+    localStorage.setItem("productos_db", JSON.stringify(productosDB));
+}
+
+// Modificamos tu función existente para que también renderice los productos al abrir la sección
+function mostrarClientes() {
+    let seccion = document.getElementById("seccion-clientes");
+
+    if (seccion.style.display === "none") {
+        seccion.style.display = "block";
+    } else {
+        seccion.style.display = "none";
+    }
 
     actualizarTablaClientes();
+    actualizarTablaProductosConfig(); // <--- NUEVO: Llama a la nueva tabla
+}
 
+// Nueva función para renderizar la tabla de productos dentro de la gestión de clientes
+function actualizarTablaProductosConfig() {
+    let tabla = document.getElementById("tablaProductosConfig");
+    if (!tabla) return; // Validación por si acaso
+    
+    tabla.innerHTML = "";
+
+    productosDB.forEach((producto, indice) => {
+        tabla.innerHTML += `
+            <tr>
+                <td>${producto.nombre}</td>
+                <td>$${parseFloat(producto.precio).toFixed(2)}</td>
+                <td><strong>${producto.deducible}</strong></td>
+                <td>
+                    <button onclick="cambiarDeducible(${indice})">
+                        Alternar Deducible
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// Función para cambiar el estado ("Si" / "No") igual a la lógica del afiliado
+function cambiarDeducible(indice) {
+    if (productosDB[indice].deducible === "Si") {
+        productosDB[indice].deducible = "No";
+    } else {
+        productosDB[indice].deducible = "Si";
+    }
+
+    // Guardamos el cambio en el localStorage
+    localStorage.setItem("productos_db", JSON.stringify(productosDB));
+    
+    // Refrescamos la tabla para ver el cambio inmediatamente
+    actualizarTablaProductosConfig();
 }

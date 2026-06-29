@@ -42,6 +42,7 @@ function cargarPrecioProducto() {
 // =========================================================================
 let subtotalGeneral = 0;
 let descuentoGeneral = 0;
+let deducibleGeneral = 0;
 
 /**
  * LÓGICA DE TRANSACCIÓN: Calcula los subtotales, impuestos y renderiza la fila en la tabla.
@@ -65,6 +66,14 @@ function agregarProducto() {
     
     // 4. ACUMULACIÓN: Sumamos el costo de esta línea al estado global de la factura
     subtotalGeneral = subtotalGeneral + subtotalDelProducto;
+
+    let productosDB_Actual = JSON.parse(localStorage.getItem("productos_db")) || CATALOGO_PRODUCTOS;
+    let productoEncontrado = productosDB_Actual.find(p => p.nombre === nombreProd);
+    
+    if (productoEncontrado && productoEncontrado.deducible === "Si") {
+        let deducibleDeEstaLinea = subtotalDelProducto * 0.10;
+        deducibleGeneral = deducibleGeneral + deducibleDeEstaLinea;
+    }
     let afiliado =
 document.getElementById("afiliado").value;
 
@@ -106,8 +115,9 @@ let totalTodo =
     // Usamos .toFixed(2) para forzar el formato estándar de moneda con dos decimales.
     document.getElementById("subtotal").textContent = subtotalGeneral.toFixed(2);
     document.getElementById("iva").textContent = impuestoIva.toFixed(2);
+    document.getElementById("deducible-factura").textContent = deducibleGeneral.toFixed(2);
     document.getElementById("total").textContent = totalTodo.toFixed(2);
-    document.getElementById("total").textContent =totalTodo.toFixed(2);
+    
     
     // 7. LIMPIEZA DE INTERFAZ: Reseteamos los campos de entrada para permitir una nueva inserción
     document.getElementById("producto").value = "";
@@ -123,10 +133,12 @@ function limpiarFactura() {
     
     subtotalGeneral = 0;
     descuentoGeneral = 0;
+    deducibleGeneral = 0;
 
     document.getElementById("subtotal").textContent = "0.00";
     document.getElementById("descuento").textContent = "0.00";
     document.getElementById("iva").textContent = "0.00";
+    document.getElementById("deducible-factura").textContent = "0.00";
     document.getElementById("total").textContent = "0.00";
 
     
@@ -152,6 +164,7 @@ function guardarFactura() {
     let subtotalPantalla = document.getElementById("subtotal").textContent; // 👈 CORREGIDO: El ID real es "subtotal"
     let descuentoPantalla = document.getElementById("descuento").textContent;
     let ivaPantalla = document.getElementById("iva").textContent;
+    let deduciblePantalla = document.getElementById("deducible-factura").textContent;
     let totalPantalla = document.getElementById("total").textContent;
     
     // 2. VALIDACIÓN DE IDENTIDAD: Si el campo del nombre está vacío, interrumpe el proceso de guardado
@@ -169,6 +182,7 @@ function guardarFactura() {
     // Inyectamos los datos respaldados de forma exacta en el reporte de abajo
     document.getElementById("rep-subtotal").textContent = subtotalPantalla;
     document.getElementById("rep-descuento").textContent = descuentoPantalla;
+    document.getElementById("rep-deducible").textContent = deduciblePantalla;
     document.getElementById("rep-iva").textContent = ivaPantalla;
     document.getElementById("rep-total").textContent = totalPantalla;
     
@@ -184,10 +198,12 @@ function guardarFactura() {
     // 6. LIMPIEZA DE ESPACIO DE TRABAJO: Dejamos la plataforma superior lista para la siguiente transacción
     subtotalGeneral = 0;
     descuentoGeneral = 0;
+    deducibleGeneral = 0;
     document.getElementById("tablaProductos").innerHTML = "";
     document.getElementById("subtotal").textContent = "0.00";
     document.getElementById("descuento").textContent = "0.00";
     document.getElementById("iva").textContent = "0.00";
+    document.getElementById("deducible-factura").textContent = "0.00";
     document.getElementById("total").textContent = "0.00";
     
     // Limpieza de inputs del cliente
